@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    //set public gameobject for the bullet
+    public GameObject bullet;
+    public float health, maxHealth;
+    public HealthBar healthBar;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -36,7 +40,22 @@ public class PlayerScript : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
         }
+        //on LMB click shoot projectile GameObject forward
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject projectile = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
+            projectile.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(1);
 
-
+        }
     }
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        healthBar.UpdateHealthBar();
+    }
+
 }
