@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -8,54 +9,59 @@ public class PlayerScript : MonoBehaviour
     public GameObject bullet;
     public float health, maxHealth;
     public HealthBar healthBar;
-    
+    private float horizontal;
+    //speed
+    public float speed = 8f;
+    //jumping power
+    public float jumpPower = 16f;
+    private bool isFacingRight = true;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+
+
+
+
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("Jump")&& isGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+
+        Flip();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //A - D MOVE KEYS
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * 5);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * 5);
-        }
-        //SCREEN RESTRICTION
-        if (transform.position.x < -8.5f)
-        {
-            transform.position = new Vector3(-8.5f, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > 8.5f)
-        {
-            transform.position = new Vector3(8.5f, transform.position.y, transform.position.z);
-        }
-        //JUMP
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
-        }
-        //on LMB click shoot projectile GameObject forward
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject projectile = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
-            projectile.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 10, ForceMode2D.Impulse);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-
-        }
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
-    public void TakeDamage(float damage)
+    private bool isGrounded()
     {
-        health -= damage;
-        healthBar.UpdateHealthBar();
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    
+    private void Flip()
+    {
+        {
+            if (horizontal > 0 && !isFacingRight || horizontal < 0 && isFacingRight)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+        }
     }
 
 }
