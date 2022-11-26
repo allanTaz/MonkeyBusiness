@@ -216,6 +216,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 527b16c19f37dfb488eaef02aacfd0b2, type: 3}
+--- !u!1 &1031278526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6099835901107791925, guid: 0b8de1f2126525141b21f2bbf5daf0bb, type: 3}
+  m_PrefabInstance: {fileID: 1984812367059670128}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1031278533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031278526}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d51253fb991c34cab028bddbf95738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  health: 0
+  maxHealth: 3
+  healthBar: {fileID: 0}
+  speed: 8
+  jumpPower: 16
+  rb: {fileID: 0}
+  groundCheck: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2145222106
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +340,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4803665435642581404, guid: 0b8de1f2126525141b21f2bbf5daf0bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4873856276751859328, guid: 0b8de1f2126525141b21f2bbf5daf0bb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -371,6 +403,10 @@ PrefabInstance:
     - target: {fileID: 6099835901107791925, guid: 0b8de1f2126525141b21f2bbf5daf0bb, type: 3}
       propertyPath: m_Name
       value: Monkey_Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431655213376457631, guid: 0b8de1f2126525141b21f2bbf5daf0bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
