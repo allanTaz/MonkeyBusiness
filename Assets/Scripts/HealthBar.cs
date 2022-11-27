@@ -7,24 +7,9 @@ public class HealthBar : MonoBehaviour
 {
     //HealthBar code
     public PlayerScript player;
-    public Sprite[] healthBarImage;
-    
+    public Image healthBarImage;
     public void UpdateHealthBar()
     {
-        switch (player.health)
-        {
-            case 3:
-                GetComponent<Image>().sprite = healthBarImage[0];
-                break;
-            case 2:
-                GetComponent<Image>().sprite = healthBarImage[1];
-                break;
-            case 1:
-                GetComponent<Image>().sprite = healthBarImage[2];
-                break;
-            case 0:
-                GetComponent<Image>().sprite = healthBarImage[3];
-                break;
-        }
+        healthBarImage.fillAmount = Mathf.Clamp(player.health / player.maxHealth, 0, 1f);
     }
 }

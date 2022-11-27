@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -8,10 +7,9 @@ public class PlayerScript : MonoBehaviour
 {
     //set public gameobject for the bullet
     public GameObject bullet;
-    public float health = 3, maxHealth = 3;
+    public float health, maxHealth;
     public HealthBar healthBar;
     private float horizontal;
-    private Vector3 lastPosition;
     //speed
     public float speed = 8f;
     //jumping power
@@ -20,33 +18,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    float interval = 3f;
-    float next = 0f;
 
-    void Start()
-    {
-        lastPosition = transform.position;
-    }
+
+
 
     // Start is called before the first frame update
     void Update()
     {
-        if (isGrounded())
-        {
-            if (Time.time >= next)
-            {
-                Debug.Log("Saved");
-
-                lastPosition = transform.position;
-                next += interval;
-            }
-        }
-        if (transform.position.y < -7 || transform.position.y > 6)
-        {
-            health -=1; 
-            healthBar.UpdateHealthBar();
-            transform.position = lastPosition;
-        }
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump")&& isGrounded())
