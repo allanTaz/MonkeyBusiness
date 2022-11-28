@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
+    private System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
     //set public gameobject for the bullet
     public GameObject bullet;
     public float health = 3, maxHealth = 3;
@@ -16,13 +19,16 @@ public class PlayerScript : MonoBehaviour
     public float speed = 8f;
     //jumping power
     public float jumpPower = 16f;
-    private bool isFacingRight = true;
+    private bool isFacingRight = false;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     float interval = 3f;
     float next = 0f;
-
+    public Animator animator;
+    bool jumping = false;
+    public float onLandTime;
+    
     void Start()
     {
         lastPosition = transform.position;
@@ -33,6 +39,14 @@ public class PlayerScript : MonoBehaviour
     {
         if (isGrounded())
         {
+            sw.Start();
+            onLandTime = sw.ElapsedMilliseconds;
+            if (sw.ElapsedMilliseconds > 60f)
+            {
+                animator.SetBool("IsJumping", false);
+                jumping = false;
+                sw.Reset();
+            }
             if (Time.time >= next)
             {
                 Debug.Log("Saved");
@@ -48,14 +62,18 @@ public class PlayerScript : MonoBehaviour
             transform.position = lastPosition;
         }
         horizontal = Input.GetAxisRaw("Horizontal");
-
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
         if (Input.GetButtonDown("Jump")&& isGrounded())
         {
+            animator.SetBool("IsJumping", true);
+            jumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
+            animator.SetBool("IsJumping", true);
+            jumping = true;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
