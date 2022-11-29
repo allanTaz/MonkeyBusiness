@@ -14,7 +14,9 @@ public class PlayerScript : MonoBehaviour
     public float health = 3, maxHealth = 3;
     public HealthBar healthBar;
     private float horizontal;
-    private Vector3 lastPosition;
+    public Vector3 lastPosition;
+ //   public float Fragment = 0, maxFragment = 10£»
+  //  float currentFragment;
     //speed
     public float speed = 8f;
     //jumping power
@@ -28,7 +30,7 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     bool jumping = false;
     public float onLandTime;
-    
+
     void Start()
     {
         lastPosition = transform.position;
@@ -57,13 +59,13 @@ public class PlayerScript : MonoBehaviour
         }
         if (transform.position.y < -7 || transform.position.y > 6)
         {
-            health -=1; 
+            health -= 1;
             healthBar.UpdateHealthBar();
             transform.position = lastPosition;
         }
         horizontal = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
-        if (Input.GetButtonDown("Jump")&& isGrounded())
+        if (Input.GetButtonDown("Jump") && isGrounded())
         {
             animator.SetBool("IsJumping", true);
             jumping = true;
@@ -90,7 +92,7 @@ public class PlayerScript : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    
+
     private void Flip()
     {
         {
@@ -103,5 +105,18 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+ //   public void ChangeFragment£¨int amount£©
+  //     {
+
+   //     currentFragment = Mathf.Clamp(currentFragment + amount,0,maxFragment);
+  //      Debug.Log(currentFragment + "/"+maxFragment);
+
+
+        
+   //     }
+        
+
+
 
 }
