@@ -7,7 +7,7 @@ public class Enemyhealthbar : MonoBehaviour
 {
     //HealthBar code
     public ProjectileScript pro;
-    public EnemyScript Enemy;
+    public testScript Enemy;
     public Sprite[] Enemyimage;
 
     public void UpdateEnemy()
