@@ -17,6 +17,8 @@ public class Poison : MonoBehaviour
             player.health -= 1;
             player.healthBar.UpdateHealthBar();
             player.transform.position = player.lastPosition;
+          //  player.animator.SetBool("IsJumping", true);
+          //  player.rb.velocity = new Vector2(player.rb.velocity.x, player.jumpPower);
         }
 
     }

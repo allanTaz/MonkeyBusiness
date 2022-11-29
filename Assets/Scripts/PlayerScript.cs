@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerScript : MonoBehaviour
 
     public int Fragments;
     public FragmentBar fragmentbar;
+    public Text FragmentsNum;
+    private bool IsHurt;
 
     //speed
     public float speed = 8f;
@@ -33,6 +36,7 @@ public class PlayerScript : MonoBehaviour
     bool jumping = false;
     public float onLandTime;
     bool firing = false;
+
 
     void Start()
     {
@@ -90,7 +94,19 @@ public class PlayerScript : MonoBehaviour
             jumping = true;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        
+
+        if (IsHurt)
+        {
+            animator.SetBool("IsGettinghit", true);
+            if (Mathf.Abs(rb.velocity.x)<0.1f)
+            {
+                animator.SetBool("IsGettinghit", false);
+                IsHurt = false;
+            }
+
+          
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             animator.SetBool("IsAttacking", true);
@@ -115,7 +131,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!IsHurt) 
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
+        
     }
     private bool isGrounded()
     {
@@ -157,32 +177,92 @@ public class PlayerScript : MonoBehaviour
 
 
     //     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-      //  PlayerScript player = other.GetComponent<PlayerScript>();
+    public void OnTriggerEnter2D(Collider2D other)
+   {
+        PlayerScript player = other.GetComponent<PlayerScript>();
 
         if (other.tag == "Fragment")
         {
             
-          //  FragmentCollect.text = Fragment.ToString();
+            
             Destroy(other.gameObject);
             Fragments += 1;           
             fragmentbar.updateFrag();
-            if(Fragments >= 5) 
+         //   FragmentsNum.text = Fragments.ToString();
+            
+           
+            //  Debug.Log(Fragments);
+        }else if (Fragments >= 5)
             {
                 health += 1;
                 healthBar.UpdateHealthBar();
             }
-           
-            //  Debug.Log(Fragments);
-        }
+
 
 
 
     }
 
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Le Mad")
+        {
+            if (animator.GetBool("IsJumping")) 
+            {
+                Destroy(other.gameObject);
+                animator.SetBool("IsJumping", true);
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                
+            }else if(transform.position.x < other.gameObject.transform.position.x)
+            {
+                rb.velocity = new Vector2(-10, rb.velocity.y);
+                health -= 1;
+                healthBar.UpdateHealthBar();
+                IsHurt = true; 
+            }
+               
+        }
+
+        if(other.gameObject.tag == "Le Hungry")
+        {
+            if (transform.position.x < other.gameObject.transform.position.x)
+            {
+                Fragments -= 1;
+                fragmentbar.updateFrag();
+                IsHurt = true;
+            }
+
+        }
+
+        if(other.gameObject.tag == "JumpPlant")
+        {
+            if (animator.GetBool("IsJumping"))
+            {
+                animator.SetBool("IsJumping", true);
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+
+            }
+            else if (transform.position.y > other.gameObject.transform.position.y)
+            {
+                rb.velocity = new Vector2(rb.velocity.x,16f);
+                IsHurt = true;
+
+               
+            }
+        }
 
 
+      //  if (other.gameObject.tag == "Fragment")
+      //  {
+            //   FragmentsNum.text = Fragments.ToString();
+      //      if (Fragments >= 5)
+      //      {
+       //         health += 1;
+       //         healthBar.UpdateHealthBar();
+      //      }
 
 
-}
+        }
+
+
+    }

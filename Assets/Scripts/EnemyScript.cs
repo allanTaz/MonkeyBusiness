@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
 {
