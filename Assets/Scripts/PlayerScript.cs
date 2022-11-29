@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     bool jumping = false;
     public float onLandTime;
+    bool firing = false;
 
     void Start()
     {
@@ -89,7 +90,25 @@ public class PlayerScript : MonoBehaviour
             jumping = true;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-
+        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetBool("IsAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("IsAttacking", false);
+        }
+        if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Throw"))
+        {
+            animator.SetBool("IsThrowing", true);
+            StartCoroutine(Shoot());
+        }
+        else
+        {
+            animator.SetBool("IsThrowing", false);
+        }
+        
         Flip();
     }
 
@@ -115,6 +134,24 @@ public class PlayerScript : MonoBehaviour
                 transform.localScale = localScale;
             }
         }
+    }
+
+    IEnumerator Shoot()
+    {
+        firing = true;
+        yield return new WaitForSeconds(0.25f);
+
+        if (isFacingRight)
+        {
+            GameObject bulletClone = Instantiate(bullet, transform.position + new Vector3(1, 0, 0), transform.rotation);
+            bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(20, 0);
+        }
+        else
+        {
+            GameObject bulletClone = Instantiate(bullet, transform.position + new Vector3(-1, 0, 0), transform.rotation);
+            bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(-20, 0);
+        }
+        firing = false;
     }
 
 
