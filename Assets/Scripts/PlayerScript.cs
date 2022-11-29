@@ -15,8 +15,10 @@ public class PlayerScript : MonoBehaviour
     public HealthBar healthBar;
     private float horizontal;
     public Vector3 lastPosition;
- //   public float Fragment = 0, maxFragment = 10£»
-  //  float currentFragment;
+
+    public int Fragments;
+    public FragmentBar fragmentbar;
+
     //speed
     public float speed = 8f;
     //jumping power
@@ -62,7 +64,16 @@ public class PlayerScript : MonoBehaviour
             health -= 1;
             healthBar.UpdateHealthBar();
             transform.position = lastPosition;
+            
         }
+        //Life die and play again
+
+       // if (health == 0)
+       // {
+       //     SceneManager.LoadScene("Dieandplay again");
+       //}
+
+
         horizontal = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         if (Input.GetButtonDown("Jump") && isGrounded())
@@ -106,16 +117,34 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
- //   public void ChangeFragment£¨int amount£©
-  //     {
-
-   //     currentFragment = Mathf.Clamp(currentFragment + amount,0,maxFragment);
-  //      Debug.Log(currentFragment + "/"+maxFragment);
 
 
-        
-   //     }
-        
+    //     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+      //  PlayerScript player = other.GetComponent<PlayerScript>();
+
+        if (other.tag == "Fragment")
+        {
+            
+          //  FragmentCollect.text = Fragment.ToString();
+            Destroy(other.gameObject);
+            Fragments += 1;           
+            fragmentbar.updateFrag();
+            if(Fragments >= 5) 
+            {
+                health += 1;
+                healthBar.UpdateHealthBar();
+            }
+           
+            //  Debug.Log(Fragments);
+        }
+
+
+
+    }
+
+
 
 
 
