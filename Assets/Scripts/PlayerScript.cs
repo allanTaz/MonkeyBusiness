@@ -194,7 +194,7 @@ public class PlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             Fragments += 1;           
             fragmentbar.updateFrag();
-            FragmentsNum.text = Fragments.ToString();
+           // FragmentsNum.text = Fragments.ToString();
             //   FragmentsNum.text = Fragments.ToString();
             if (Fragments >= 5)
             {
@@ -271,14 +271,6 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-      //  if (other.gameObject.tag == "Fragment")
-      //  {
-            //   FragmentsNum.text = Fragments.ToString();
-      //      if (Fragments >= 5)
-      //      {
-       //         health += 1;
-       //         healthBar.UpdateHealthBar();
-      //      }
 
 
         }

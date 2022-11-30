@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Enemyhealthbar : MonoBehaviour
 {
     //HealthBar code
-    public ProjectileScript pro;
-    public testScript Enemy;
-    public Sprite[] Enemyimage;
+ //   public ProjectileScript pro;
+ //   public test Enemy;
+  //  public Sprite[] Enemyimage;
 
     public void UpdateEnemy()
     {
