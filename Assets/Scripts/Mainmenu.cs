@@ -25,6 +25,7 @@ public class Mainmenu : MonoBehaviour
     }
     public void Pause()
     {
+        Debug.Log("Game Paused");
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
