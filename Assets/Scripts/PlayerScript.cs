@@ -5,6 +5,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -20,7 +21,10 @@ public class PlayerScript : MonoBehaviour
     public int Fragments;
     public FragmentBar fragmentbar;
     public Text FragmentsNum;
+    public Text Tim;
+
     private bool IsHurt;
+    private bool IsFinish;
 
     //speed
     public float speed = 8f;
@@ -46,6 +50,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
+
         if (isGrounded())
         {
             sw.Start();
@@ -73,10 +78,11 @@ public class PlayerScript : MonoBehaviour
         }
         //Life die and play again
 
-       // if (health == 0)
-       // {
-       //     SceneManager.LoadScene("Dieandplay again");
-       //}
+        if (health == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            Time.timeScale = 0f;
+        }
 
 
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -179,24 +185,37 @@ public class PlayerScript : MonoBehaviour
     //     }
     public void OnTriggerEnter2D(Collider2D other)
    {
-        PlayerScript player = other.GetComponent<PlayerScript>();
+       // PlayerScript player = other.GetComponent<PlayerScript>();
 
-        if (other.tag == "Fragment")
+        if (other.gameObject.tag == "Fragment")
         {
             
             
             Destroy(other.gameObject);
             Fragments += 1;           
             fragmentbar.updateFrag();
-         //   FragmentsNum.text = Fragments.ToString();
-            
-           
-            //  Debug.Log(Fragments);
-        }else if (Fragments >= 5)
+            FragmentsNum.text = Fragments.ToString();
+            //   FragmentsNum.text = Fragments.ToString();
+            if (Fragments >= 5)
             {
                 health += 1;
                 healthBar.UpdateHealthBar();
             }
+
+            //  Debug.Log(Fragments);
+        }
+
+
+        if (other.gameObject.tag == "FinalFrag")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            Time.timeScale = 0f;
+        }
+        // else if (Fragments >= 5)
+        //     {
+        //         health += 1;
+        //         healthBar.UpdateHealthBar();
+        //    }
 
 
 
@@ -263,6 +282,21 @@ public class PlayerScript : MonoBehaviour
 
 
         }
+
+
+    //public void UpdateTime()
+    //{
+      
+     //   gametime += Time.deltaTime;
+     //   Debug.Log((int)gametime);
+
+    
+    //    UIManager.instance.UpdateTimeBar((int)gametime);
+
+        //µ¹¼ÆÊ±
+        //UpdateTimeBar((int)(maxtime-gametime));
+   // }
+
 
 
     }
