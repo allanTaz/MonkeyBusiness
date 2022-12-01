@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Enemyhealthbar : MonoBehaviour
 {
-<<<<<<< Updated upstream
+
 
     
     public P1 Enemy;
@@ -30,7 +30,7 @@ public class Enemyhealthbar : MonoBehaviour
         }
     }
 
-=======
+
  
 
  //   public E1 Enemy;
@@ -54,5 +54,5 @@ public class Enemyhealthbar : MonoBehaviour
     //            break;
     //    }
   //  }
->>>>>>> Stashed changes
+
 }
