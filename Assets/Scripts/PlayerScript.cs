@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     public AudioSource hurtSource;
     public AudioSource bananaSource;
     public AudioSource throwSource, throwSource2;
+    public AudioSource floghurt;
     public int Fragments;
     public FragmentBar fragmentbar;
     public Text FragmentsNum;
@@ -240,6 +241,7 @@ public class PlayerScript : MonoBehaviour
             if (animator.GetBool("IsJumping")) 
             {
                 Destroy(other.gameObject);
+                floghurt.Play();
                 animator.SetBool("IsJumping", true);
 
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
