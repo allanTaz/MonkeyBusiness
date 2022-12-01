@@ -35,7 +35,7 @@ public class P1 : MonoBehaviour
 
     void update()
     {
-        
+
     }
 
 
@@ -48,7 +48,7 @@ public class P1 : MonoBehaviour
             enemyhealthbar.UpdateEnemy();
             if (Enemyhealth == 0)
             {
-           //     anim.SetBool("IsHunDie",true);
+                //     anim.SetBool("IsHunDie",true);
                 Destroy(gameObject);
 
             }
@@ -67,4 +67,3 @@ public class P1 : MonoBehaviour
 
     }
 }
-

@@ -47,6 +47,27 @@ public class Mainmenu : MonoBehaviour
 
     }
 
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void home()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
+    }
+    public void restart2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void restart3()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+    }
+    public void home2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 5);
+    }
 
 
 }

@@ -8,9 +8,12 @@ public class Enemyhealthbar : MonoBehaviour
 
 
 
+
     
     public P1 Enemy;
     public Sprite[] Enemyimage;
+
+
     //HealthBar code
  //   public ProjectileScript pro;
  //   public test Enemy;
@@ -35,6 +38,7 @@ public class Enemyhealthbar : MonoBehaviour
                 break;
         }
     }
+
 
 
 

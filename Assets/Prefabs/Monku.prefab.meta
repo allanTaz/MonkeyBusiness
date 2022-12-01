@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Monku.prefab.meta
 guid: aedbe526341012c47a8d193b0690027e
+========
+guid: 527b16c19f37dfb488eaef02aacfd0b2
+>>>>>>>> parent of 7332e95 (A bit update（almost done）):Assets/Prefabs/Enemy_Le_Shy.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
