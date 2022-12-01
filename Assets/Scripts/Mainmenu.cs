@@ -51,6 +51,7 @@ public class Mainmenu : MonoBehaviour
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
     public void home()
     {

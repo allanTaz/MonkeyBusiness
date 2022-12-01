@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,8 +12,8 @@ public class P1 : MonoBehaviour
 
     public float Enemyhealth = 3, maxEnemyhealth = 3;
     public Enemyhealthbar enemyhealthbar;
-    protected AudioSource deathSource;
-  //  private Animator anim;
+    public AudioSource deathSource;
+    private Animator anim;
 
 
 
@@ -29,7 +28,7 @@ public class P1 : MonoBehaviour
         Enemyhealth = 3;
         enemyhealthbar.transform.parent = gameObject.transform;
         deathSource = GetComponent<AudioSource>();
-        //  anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -50,7 +49,7 @@ public class P1 : MonoBehaviour
             deathSource.Play();
             if (Enemyhealth == 0)
             {
-                //     anim.SetBool("IsHunDie",true);
+                anim.SetBool("IsHunDie",true);
                 
                 Destroy(gameObject);
 
