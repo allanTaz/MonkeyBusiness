@@ -206,7 +206,7 @@ public class PlayerScript : MonoBehaviour
 
         if (other.gameObject.tag == "FinalFrag")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             Time.timeScale = 0f;
         }
         // else if (Fragments >= 5)
@@ -222,7 +222,7 @@ public class PlayerScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Le Mad")
+        if(other.gameObject.tag == "Le Mad" )
         {
             if (animator.GetBool("IsJumping")) 
             {

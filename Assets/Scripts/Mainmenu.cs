@@ -6,11 +6,12 @@ public class Mainmenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public AudioMixer audioMixer;
+ 
     public GameObject player;
 
 
 
-   public void PlayGame() 
+    public void PlayGame() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -69,5 +70,10 @@ public class Mainmenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 5);
     }
 
+    public void Gameplayhome()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+    }
 
+    
 }
