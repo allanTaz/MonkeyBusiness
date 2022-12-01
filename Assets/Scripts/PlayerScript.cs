@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
@@ -74,13 +74,13 @@ public class PlayerScript : MonoBehaviour
             health -= 1;
             healthBar.UpdateHealthBar();
             transform.position = lastPosition;
-
+            
         }
         //Life die and play again
 
         if (health == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             Time.timeScale = 0f;
         }
 
@@ -104,13 +104,13 @@ public class PlayerScript : MonoBehaviour
         if (IsHurt)
         {
             animator.SetBool("IsGettinghit", true);
-            if (Mathf.Abs(rb.velocity.x) < 0.1f)
+            if (Mathf.Abs(rb.velocity.x)<0.1f)
             {
                 animator.SetBool("IsGettinghit", false);
                 IsHurt = false;
             }
 
-
+          
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -130,18 +130,18 @@ public class PlayerScript : MonoBehaviour
         {
             animator.SetBool("IsThrowing", false);
         }
-
+        
         Flip();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!IsHurt)
+        if (!IsHurt) 
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
-
+        
     }
     private bool isGrounded()
     {
@@ -184,18 +184,17 @@ public class PlayerScript : MonoBehaviour
 
     //     }
     public void OnTriggerEnter2D(Collider2D other)
-    {
-        // PlayerScript player = other.GetComponent<PlayerScript>();
+   {
+       // PlayerScript player = other.GetComponent<PlayerScript>();
 
         if (other.gameObject.tag == "Fragment")
         {
-
-
+            
+            
             Destroy(other.gameObject);
-            Fragments += 1;
+            Fragments += 1;           
             fragmentbar.updateFrag();
-
-            // FragmentsNum.text = Fragments.ToString();
+           // FragmentsNum.text = Fragments.ToString();
             //   FragmentsNum.text = Fragments.ToString();
             if (Fragments >= 5)
             {
@@ -209,7 +208,7 @@ public class PlayerScript : MonoBehaviour
 
         if (other.gameObject.tag == "FinalFrag")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
             Time.timeScale = 0f;
         }
         // else if (Fragments >= 5)
@@ -221,38 +220,29 @@ public class PlayerScript : MonoBehaviour
 
 
 
-
     }
-
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Le Mad")
+        if(other.gameObject.tag == "Le Mad")
         {
-            if (animator.GetBool("IsJumping"))
+            if (animator.GetBool("IsJumping")) 
             {
                 Destroy(other.gameObject);
                 animator.SetBool("IsJumping", true);
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-
-            }
-            else if (transform.position.x < other.gameObject.transform.position.x)
+                
+            }else if(transform.position.x < other.gameObject.transform.position.x)
             {
                 rb.velocity = new Vector2(-10, rb.velocity.y);
                 health -= 1;
                 healthBar.UpdateHealthBar();
-                IsHurt = true;
+                IsHurt = true; 
             }
-
+               
         }
 
-
-
-
-
-
-
-        if (other.gameObject.tag == "Le Hungry")
+        if(other.gameObject.tag == "Le Hungry")
         {
             if (transform.position.x < other.gameObject.transform.position.x)
             {
@@ -263,39 +253,7 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-
-
-        if (other.gameObject.tag == "poision")
-        {
-            if (animator.GetBool("IsJumping"))
-            {
-
-                animator.SetBool("IsJumping", true);
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-
-            }
-            else if (transform.position.x < other.gameObject.transform.position.x)
-            {
-                rb.velocity = new Vector2(-10, rb.velocity.y);
-                health -= 1;
-                healthBar.UpdateHealthBar();
-                IsHurt = true;
-            }
-
-        }
-
-        if (other.gameObject.tag == "poision2")
-        {
-
-            health -= 1;
-            healthBar.UpdateHealthBar();
-            transform.position = lastPosition;
-        }
-
-
-
-
-        if (other.gameObject.tag == "JumpPlant")
+        if(other.gameObject.tag == "JumpPlant")
         {
             if (animator.GetBool("IsJumping"))
             {
@@ -305,18 +263,17 @@ public class PlayerScript : MonoBehaviour
             }
             else if (transform.position.y > other.gameObject.transform.position.y)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 16f);
+                rb.velocity = new Vector2(rb.velocity.x,16f);
                 IsHurt = true;
 
-
+               
             }
         }
 
 
 
 
-    }
-}
+        }
 
 
     //public void UpdateTime()
@@ -334,5 +291,4 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    
-
+    }
