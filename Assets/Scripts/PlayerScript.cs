@@ -240,17 +240,6 @@ public class PlayerScript : MonoBehaviour
                
         }
 
-        if(other.gameObject.tag == "Le Hungry")
-        {
-            if (transform.position.x < other.gameObject.transform.position.x)
-            {
-                Fragments -= 1;
-                fragmentbar.updateFrag();
-                IsHurt = true;
-            }
-
-        }
-
         if(other.gameObject.tag == "JumpPlant")
         {
             if (animator.GetBool("IsJumping"))

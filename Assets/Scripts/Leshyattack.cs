@@ -17,6 +17,7 @@ public class Leshyattack : MonoBehaviour
     void Update()
     {
         
+        
     }
     //coroutine activate beam with interval
     IEnumerator ActivateBeam()

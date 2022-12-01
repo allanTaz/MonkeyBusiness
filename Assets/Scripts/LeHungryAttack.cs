@@ -40,6 +40,7 @@ public class LeHungryAttack : MonoBehaviour
                     newBanana = Instantiate(differentBanana, tongue.transform.position, Quaternion.identity) as GameObject;
                     player.GetComponent<PlayerScript>().Fragments -= 1;
                     player.GetComponent<PlayerScript>().fragmentbar.updateFrag();
+                    player.GetComponent<PlayerScript>().IsHurt = true;
                     captured = true;
                 }
                 yield return new WaitForSeconds(0.01f);
