@@ -53,7 +53,7 @@ public class P1 : MonoBehaviour
                 Destroy(gameObject);
 
             }
-
+            Destroy(other.gameObject);
 
         }
 
@@ -63,9 +63,19 @@ public class P1 : MonoBehaviour
       //      Destroy(gameObject);
 
       //  }
+    }
+    public void GetDamaged()
+    {
+        Enemyhealth -= 1;
+        enemyhealthbar.UpdateEnemy();
+        deathSource.Play();
+        if (Enemyhealth == 0)
+        {
+            //  anim.SetBool("IsHunDie",true);
 
+            Destroy(gameObject);
 
-
+        }
     }
 }
 

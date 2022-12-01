@@ -10,13 +10,14 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     private System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-
+    public LayerMask enemyLayer;
     //set public gameobject for the bullet
     public GameObject bullet;
     public float health = 3, maxHealth = 3;
     public HealthBar healthBar;
     private float horizontal;
     public Vector3 lastPosition;
+    public GameObject attack;
 
 
     public AudioSource jumpSource;
@@ -126,6 +127,12 @@ public class PlayerScript : MonoBehaviour
         {
             animator.SetBool("IsAttacking", true);
             throwSource2.Play();
+            Collider2D[] hit_enemies = Physics2D.OverlapCircleAll(attack.transform.position, 1f, enemyLayer);
+            foreach(Collider2D enemy in hit_enemies)
+            {
+                enemy.GetComponent<P1>().GetDamaged();
+            }
+
         }
         else
         {
@@ -294,11 +301,8 @@ public class PlayerScript : MonoBehaviour
         {
             animator.enabled = true;
             rb.constraints = currentType;
-            health -= 1;
-            healthBar.UpdateHealthBar();
         }
     }
-
 
     //public void UpdateTime()
     //{
