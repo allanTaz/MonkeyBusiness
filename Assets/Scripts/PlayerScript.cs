@@ -45,10 +45,11 @@ public class PlayerScript : MonoBehaviour
     bool jumping = false;
     public float onLandTime;
     bool firing = false;
-
+    public RigidbodyConstraints2D currentType;
 
     void Start()
     {
+        currentType = rb.constraints;
         lastPosition = transform.position;
     }
 
@@ -274,22 +275,42 @@ public class PlayerScript : MonoBehaviour
 
 
 
+    }
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Beam")
+        {
+            animator.enabled = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+
+
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Beam")
+        {
+            animator.enabled = true;
+            rb.constraints = currentType;
+            health -= 1;
+            healthBar.UpdateHealthBar();
+        }
+    }
 
 
     //public void UpdateTime()
     //{
-      
-     //   gametime += Time.deltaTime;
-     //   Debug.Log((int)gametime);
 
-    
+    //   gametime += Time.deltaTime;
+    //   Debug.Log((int)gametime);
+
+
     //    UIManager.instance.UpdateTimeBar((int)gametime);
 
-        //倒计时
-        //UpdateTimeBar((int)(maxtime-gametime));
-   // }
+    //倒计时
+    //UpdateTimeBar((int)(maxtime-gametime));
+    // }
 
 
 
-    }
+}
