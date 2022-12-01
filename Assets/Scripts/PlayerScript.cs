@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour
                 next += interval;
             }
         }
-        if (transform.position.y < -7 || transform.position.y > 6)
+        if (transform.position.y < -7 || transform.position.y > 10)
         {
             health -= 1;
             healthBar.UpdateHealthBar();

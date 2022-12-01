@@ -25,16 +25,16 @@ public class Enemyhealthbar : MonoBehaviour
         switch (Enemy.Enemyhealth)
         {
             case 3:
-                GetComponent<Image>().sprite = Enemyimage[0];
+                GetComponent<SpriteRenderer>().sprite = Enemyimage[0];
                 break;
             case 2:
-                GetComponent<Image>().sprite = Enemyimage[1];
+                GetComponent<SpriteRenderer>().sprite = Enemyimage[1];
                 break;
             case 1:
-                GetComponent<Image>().sprite = Enemyimage[2];
+                GetComponent<SpriteRenderer>().sprite = Enemyimage[2];
                 break;
             case 0:
-                GetComponent<Image>().sprite = Enemyimage[3];
+                GetComponent<SpriteRenderer>().sprite = Enemyimage[3];
                 break;
         }
     }

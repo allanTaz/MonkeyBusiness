@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 
 public class P1 : MonoBehaviour
@@ -49,7 +48,7 @@ public class P1 : MonoBehaviour
             deathSource.Play();
             if (Enemyhealth == 0)
             {
-                anim.SetBool("IsHunDie",true);
+              //  anim.SetBool("IsHunDie",true);
                 
                 Destroy(gameObject);
 

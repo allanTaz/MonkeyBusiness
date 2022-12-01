@@ -5,6 +5,8 @@ using UnityEngine;
 public class Mad : MonoBehaviour
 {
     public PlayerScript player;
+    
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,6 +17,7 @@ public class Mad : MonoBehaviour
             player.health -= 1;
             player.healthBar.UpdateHealthBar();
             player.transform.position = player.lastPosition;
+
         }
 
     }
