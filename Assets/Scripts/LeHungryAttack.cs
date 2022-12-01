@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 
 public class LeHungryAttack : MonoBehaviour
@@ -33,11 +34,14 @@ public class LeHungryAttack : MonoBehaviour
                 //tongue move towards player
                 tongue.transform.position = Vector3.MoveTowards(tongue.transform.position, banana.transform.position, 0.1f);
                 //spawn tongue segments to follow tongue
-                tongueSegments.Add(Instantiate(tongueSegment, tongue.transform.position, Quaternion.identity) as GameObject);
+                GameObject element = Instantiate(tongueSegment, tongue.transform.position, Quaternion.identity) as GameObject;
+                element.transform.parent = gameObject.transform;
+                tongueSegments.Add(element);
                 //distance between tongue and banana
                 if (Vector3.Distance(tongue.transform.position, banana.transform.position) < 0.5f)
                 {
                     newBanana = Instantiate(differentBanana, tongue.transform.position, Quaternion.identity) as GameObject;
+                    newBanana.transform.parent = gameObject.transform;
                     player.GetComponent<PlayerScript>().Fragments -= 1;
                     player.GetComponent<PlayerScript>().fragmentbar.updateFrag();
                     player.GetComponent<PlayerScript>().IsHurt = true;
