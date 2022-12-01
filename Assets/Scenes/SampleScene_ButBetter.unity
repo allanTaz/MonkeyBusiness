@@ -5915,7 +5915,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 6cc76e817d61bdf449788d802a8fb97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10577,6 +10577,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc780705faf8174188313a9fea13051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1741212117 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8299411165981102291, guid: b5d36742dbdd4c04c81c663c078a085e, type: 3}
+  m_PrefabInstance: {fileID: 1578832990195874776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1741394012
 GameObject:
   m_ObjectHideFlags: 0
@@ -13946,6 +13951,10 @@ PrefabInstance:
       propertyPath: differentBanana
       value: 
       objectReference: {fileID: 3817442984869360255, guid: 1750f6beb3363e944ac332548c492b1c, type: 3}
+    - target: {fileID: 1578832990332364158, guid: b5d36742dbdd4c04c81c663c078a085e, type: 3}
+      propertyPath: deathSource
+      value: 
+      objectReference: {fileID: 1741212117}
     - target: {fileID: 1578832990332364158, guid: b5d36742dbdd4c04c81c663c078a085e, type: 3}
       propertyPath: enemyhealthbar
       value: 
