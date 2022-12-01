@@ -63,8 +63,6 @@ public class PlayerScript : MonoBehaviour
             }
             if (Time.time >= next)
             {
-                Debug.Log("Saved");
-
                 lastPosition = transform.position;
                 next += interval;
             }
