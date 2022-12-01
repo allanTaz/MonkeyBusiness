@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager instance;
-
+    public static AudioManager instance;
+    [SerializeField]
     private void Awake()
     {
         instance = this;
