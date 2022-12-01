@@ -53,7 +53,7 @@ public class P1 : MonoBehaviour
                 Destroy(gameObject);
 
             }
-
+            Destroy(other.gameObject);
 
         }
 
@@ -63,9 +63,6 @@ public class P1 : MonoBehaviour
       //      Destroy(gameObject);
 
       //  }
-
-
-
     }
 }
 
