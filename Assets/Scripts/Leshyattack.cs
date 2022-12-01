@@ -6,6 +6,7 @@ public class Leshyattack : MonoBehaviour
 {
     //game object
     public GameObject beam;
+   // public GameObject player;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class Leshyattack : MonoBehaviour
         {
             yield return new WaitForSeconds(1.765f);
             beam.SetActive(true);
+            
+            
             yield return new WaitForSeconds(1.76f);
             beam.SetActive(false);
         }

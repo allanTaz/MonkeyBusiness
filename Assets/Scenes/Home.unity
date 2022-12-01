@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 79a5c4d8bb7eb8743bbbb66bd5d225ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8fded96b2e5b514d9af74a69aeeecbc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -743,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   audioMixer: {fileID: 0}
+  buttonSource: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &1636899658
 GameObject:

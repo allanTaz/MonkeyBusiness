@@ -264,7 +264,29 @@ public class PlayerScript : MonoBehaviour
                
         }
 
-        if(other.gameObject.tag == "JumpPlant")
+        if (other.gameObject.tag == "poision2")
+        {
+            if (animator.GetBool("IsJumping"))
+            {
+                
+                
+                animator.SetBool("IsJumping", true);
+
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+
+            }
+            else if (transform.position.x < other.gameObject.transform.position.x)
+            {
+                rb.velocity = new Vector2(-10, rb.velocity.y);
+                health -= 1;
+                healthBar.UpdateHealthBar();
+                
+                IsHurt = true;
+            }
+
+        }
+
+        if (other.gameObject.tag == "JumpPlant")
         {
             if (animator.GetBool("IsJumping"))
             {
@@ -280,6 +302,8 @@ public class PlayerScript : MonoBehaviour
 
             }
         }
+
+
 
 
 
