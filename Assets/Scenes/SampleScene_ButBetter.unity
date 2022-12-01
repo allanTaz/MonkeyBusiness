@@ -10992,11 +10992,11 @@ MonoBehaviour:
   maxHealth: 3
   healthBar: {fileID: 935378328}
   lastPosition: {x: 0, y: 0, z: 0}
-  jumpSource: {fileID: 0}
-  hurtSource: {fileID: 0}
-  bananaSource: {fileID: 0}
-  throwSource: {fileID: 0}
-  throwSource2: {fileID: 0}
+  jumpSource: {fileID: 1782736249}
+  hurtSource: {fileID: 1782736250}
+  bananaSource: {fileID: 1782736251}
+  throwSource: {fileID: 1782736252}
+  throwSource2: {fileID: 1782736253}
   Fragments: 0
   fragmentbar: {fileID: 328598098}
   FragmentsNum: {fileID: 0}
