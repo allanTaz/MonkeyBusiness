@@ -64,5 +64,18 @@ public class P1 : MonoBehaviour
 
       //  }
     }
+    public void GetDamaged()
+    {
+        Enemyhealth -= 1;
+        enemyhealthbar.UpdateEnemy();
+        deathSource.Play();
+        if (Enemyhealth == 0)
+        {
+            //  anim.SetBool("IsHunDie",true);
+
+            Destroy(gameObject);
+
+        }
+    }
 }
 

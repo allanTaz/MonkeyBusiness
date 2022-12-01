@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
             Collider2D[] hit_enemies = Physics2D.OverlapCircleAll(attack.transform.position, 1f, enemyLayer);
             foreach(Collider2D enemy in hit_enemies)
             {
-                print("YEIS");
+                enemy.GetComponent<P1>().GetDamaged();
             }
 
         }
@@ -301,13 +301,7 @@ public class PlayerScript : MonoBehaviour
         {
             animator.enabled = true;
             rb.constraints = currentType;
-            health -= 1;
-            healthBar.UpdateHealthBar();
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawSphere(attack.transform.position, 1);
     }
 
     //public void UpdateTime()
