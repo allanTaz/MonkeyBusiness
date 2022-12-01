@@ -772,10 +772,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tongue: {fileID: 2072373038}
+  differentBanana: {fileID: 3817442984869360255, guid: 1750f6beb3363e944ac332548c492b1c, type: 3}
   banana: {fileID: 111044818}
   player: {fileID: 1782736241}
   tongueSegment: {fileID: 2072373038}
   notStolen: 0
+  tongueSegments: []
+  newBanana: {fileID: 0}
 --- !u!50 &136797859
 Rigidbody2D:
   serializedVersion: 4
@@ -4721,10 +4724,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tongue: {fileID: 788485791}
+  differentBanana: {fileID: 0}
   banana: {fileID: 111044818}
   player: {fileID: 1782736241}
   tongueSegment: {fileID: 0}
   notStolen: 0
+  tongueSegments: []
+  newBanana: {fileID: 0}
 --- !u!1 &873434256
 GameObject:
   m_ObjectHideFlags: 0
