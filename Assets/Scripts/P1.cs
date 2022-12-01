@@ -13,22 +13,23 @@ public class P1 : MonoBehaviour
 
     public float Enemyhealth = 3, maxEnemyhealth = 3;
     public Enemyhealthbar enemyhealthbar;
-    private Animator anim;
+    protected AudioSource deathSource;
+  //  private Animator anim;
 
 
 
 
-    // [SerializeField] private Rigidbody2D rb;
+    //private bool IsDeath;
 
 
-    private bool IsDeath;
 
 
     void start()
     {
         Enemyhealth = 3;
         enemyhealthbar.transform.parent = gameObject.transform;
-        anim = GetComponent<Animator>();
+        deathSource = GetComponent<AudioSource>();
+        //  anim = GetComponent<Animator>();
     }
 
 
@@ -46,9 +47,11 @@ public class P1 : MonoBehaviour
 
             Enemyhealth -= 1;
             enemyhealthbar.UpdateEnemy();
+            deathSource.Play();
             if (Enemyhealth == 0)
             {
                 //     anim.SetBool("IsHunDie",true);
+                
                 Destroy(gameObject);
 
             }
@@ -57,13 +60,14 @@ public class P1 : MonoBehaviour
         }
 
 
-        void death()
-        {
-            Destroy(gameObject);
+      //  void death()
+     //  {
+      //      Destroy(gameObject);
 
-        }
+      //  }
 
 
 
     }
 }
+

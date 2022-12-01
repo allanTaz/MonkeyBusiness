@@ -18,12 +18,17 @@ public class PlayerScript : MonoBehaviour
     private float horizontal;
     public Vector3 lastPosition;
 
+
+    public AudioSource jumpSource;
+    public AudioSource hurtSource;
+    public AudioSource bananaSource;
+    public AudioSource throwSource, throwSource2;
     public int Fragments;
     public FragmentBar fragmentbar;
     public Text FragmentsNum;
     public Text Tim;
 
-    private bool IsHurt;
+    public bool IsHurt;
     private bool IsFinish;
 
     //speed
@@ -71,6 +76,7 @@ public class PlayerScript : MonoBehaviour
         {
             health -= 1;
             healthBar.UpdateHealthBar();
+            hurtSource.Play();
             transform.position = lastPosition;
             
         }
@@ -89,6 +95,7 @@ public class PlayerScript : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
             jumping = true;
+            
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
@@ -96,12 +103,14 @@ public class PlayerScript : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
             jumping = true;
+            jumpSource.Play();
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
         if (IsHurt)
         {
             animator.SetBool("IsGettinghit", true);
+            
             if (Mathf.Abs(rb.velocity.x)<0.1f)
             {
                 animator.SetBool("IsGettinghit", false);
@@ -114,6 +123,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             animator.SetBool("IsAttacking", true);
+            throwSource2.Play();
         }
         else
         {
@@ -122,6 +132,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Throw"))
         {
             animator.SetBool("IsThrowing", true);
+            throwSource.Play();
             StartCoroutine(Shoot());
         }
         else
@@ -192,6 +203,7 @@ public class PlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             Fragments += 1;           
             fragmentbar.updateFrag();
+            bananaSource.Play();
            // FragmentsNum.text = Fragments.ToString();
             //   FragmentsNum.text = Fragments.ToString();
             if (Fragments >= 5)
@@ -228,6 +240,7 @@ public class PlayerScript : MonoBehaviour
             {
                 Destroy(other.gameObject);
                 animator.SetBool("IsJumping", true);
+
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 
             }else if(transform.position.x < other.gameObject.transform.position.x)
@@ -235,6 +248,7 @@ public class PlayerScript : MonoBehaviour
                 rb.velocity = new Vector2(-10, rb.velocity.y);
                 health -= 1;
                 healthBar.UpdateHealthBar();
+                hurtSource.Play();
                 IsHurt = true; 
             }
                
@@ -252,8 +266,8 @@ public class PlayerScript : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x,16f);
                 IsHurt = true;
+                
 
-               
             }
         }
 
